@@ -1,25 +1,11 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
 from social.users.models import User
 
 
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    # fields = [
-    #     'id',
-    #     'username',
-    #     'email',
-    #     'password1',
-    #     'password2',
-    #     'first_name',
-    #     'last_name',
-    #     'phone_number',
-    #     'is_active',
-    #     'is_staff',
-    #     'is_superuser',
-    #     'modified_at',
-    #     'last_login'
-    # ]
+class UserAdmin(AuthUserAdmin):
 
     fieldsets = (
         (
@@ -33,7 +19,7 @@ class UserAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Personal Info",
+            "Personal info",
             {
                 "fields": (
                     "first_name",
@@ -44,14 +30,11 @@ class UserAdmin(admin.ModelAdmin):
         (
             "Permissions",
             {
-                "fields": (
-                    "is_staff",
-                    "is_superuser",
-                )
+                "fields": ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
             },
         ),
         (
-            "Important Dates",
+            "Important dates",
             {
                 "fields": (
                     "last_login",
@@ -59,6 +42,16 @@ class UserAdmin(admin.ModelAdmin):
                 )
             }
         )
+    )
+
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide", ),
+                "fields": ("email", "username", "password1", "password2"),
+            },
+        ),
     )
 
     list_display = [
@@ -76,7 +69,3 @@ class UserAdmin(admin.ModelAdmin):
     ]
 
     readonly_fields = ['id', 'modified_at']
-
-    def save_model(self, request, obj, form, change):
-
-        super(UserAdmin, self).save_model(request, obj, form, change)
