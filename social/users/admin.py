@@ -68,4 +68,4 @@ class UserAdmin(AuthUserAdmin):
         'last_login'
     ]
 
-    readonly_fields = ['id', 'modified_at']
+    readonly_fields = ['id', 'modified_at', 'last_login']
