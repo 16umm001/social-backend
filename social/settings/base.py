@@ -74,11 +74,15 @@ WSGI_APPLICATION = "social.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": "postgres://postgres@localhost/social"
+   "default": {
+       "ENGINE": "django.contrib.gis.db.backends.postgis",
+       "NAME": "social",
+       "USER": "postgres",
+       "PASSWORD": "adarsh1998",
+       "HOST": "localhost",
+       "PORT": '5432',
+   }
 }
-DATABASES['default']['ATOMIC_REQUEST'] = True
-DATABASES['default']['CONN_MAX_AGE'] = 10
-DATABASES['default']["ENGINE"] = "django.contrib.gis.db.backends.postgis"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
