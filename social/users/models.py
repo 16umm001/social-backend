@@ -14,7 +14,7 @@ class User(AbstractBaseUser, UUIDModel, PermissionsMixin):
     username = models.CharField(max_length=128)
     is_active = models.BooleanField("active", default=False)
     is_staff = models.BooleanField("staff status", default=False)
-
+    is_verified = models.BooleanField(default=True, db_index=True)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     USERNAME_FIELD = "email"
