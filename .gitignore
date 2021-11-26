@@ -1,2 +1,9 @@
 .idea/
 .env
+
+__pycache__/
+*.py[cod]
+
+.DS_STORE
+.Python
+.pytest_cache/
