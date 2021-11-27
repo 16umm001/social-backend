@@ -8,25 +8,35 @@ on:
 
 jobs:
   build:
+    docker:
+      - image: python:3.7
+        environment:
+          DATABASE_URL: postgis://postgres@localhost/social
 
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
+      - image: circleci/postgres:10.1-postgis
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: social
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        sudo apt update
-        sudo apt install -y libgdal-dev
-    - name: Run Tests
-      run: |
-        python manage.py test
+      working_directory: ~/social
+
+      executor: python/default
+      steps:
+        - checkout
+        - python/load-cache
+        - python/install-deps
+        - python/save-cache
+        - run:
+            name: install dependencies
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install -U -r requirements.txt
+              pip install flake8
+
+              # install gdal for postgis
+              apt update
+              apt install -y libgdal-dev
+        - run:
+            command: ./manage.py test
+            name: Test
