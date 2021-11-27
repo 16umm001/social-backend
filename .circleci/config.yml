@@ -32,8 +32,8 @@ jobs:
               pip install flake8
 
               # install gdal for postgis
-              sudo apt update
-              sudo apt install -y libgdal-dev
+              apt update
+              apt install -y libgdal-dev
       - run:
           command: ./manage.py test
           name: Test
