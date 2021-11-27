@@ -9,7 +9,7 @@ class UserRegister(APITestCase):
             "first_name": "Jon",
             "last_name": "Doe",
             "email": "test@email.com",
-            "password": "test123",
+            "password": "test1234",
             "username": "test_user",
             "phone_number": "9876543210"
         }
