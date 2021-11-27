@@ -6,9 +6,9 @@ orbs:
 jobs:
   build:
     docker:
-      -image: python:3.7
-      environment:
-        DATABASE_URL: postgis://postgresql@localhost/social
+      - image: python:3.7
+        environment:
+          DATABASE_URL: postgis://postgres@localhost/social
 
       - image: circleci/postgres:10.1-postgis
         environment:
