@@ -30,7 +30,7 @@ class UserAdmin(AuthUserAdmin):
         (
             "Permissions",
             {
-                "fields": ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+                "fields": ('is_active', 'is_verified', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
             },
         ),
         (
@@ -61,6 +61,7 @@ class UserAdmin(AuthUserAdmin):
         'first_name',
         'last_name',
         'phone_number',
+        'is_verified',
         'is_active',
         'is_staff',
         'is_superuser',
