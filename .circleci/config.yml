@@ -4,6 +4,19 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
+  build:
+    docker:
+      -image: python:3.7
+      environment:
+        DATABASE_URL: postgis://postgresql@localhost/social
+
+      - image: circleci/postgres:10.1-postgis
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: social
+
+    working_directory: ~/social
+
   build-and-test:
     executor: python/default
     steps:
