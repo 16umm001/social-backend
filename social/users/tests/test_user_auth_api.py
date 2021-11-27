@@ -14,7 +14,7 @@ class UserRegister(APITestCase):
             "phone_number": "9876543210"
         }
 
-        self.response_keys = {'username', 'email', 'first_name', 'last_name', 'phone_number', 'password', 'auth_token'}
+        self.response_keys = {'username', 'email', 'first_name', 'last_name', 'phone_number', 'auth_token'}
 
     def test_user_register(self):
         response = self.client.post(self.url, self.data, format='json')
