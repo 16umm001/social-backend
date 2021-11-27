@@ -18,10 +18,10 @@ jobs:
               . venv/bin/activate
               pip install -U -r requirements.txt
               pip install flake8
-              
+
               # install gdal for postgis
-              apt update
-              apt install -y libgdal-dev
+              sudo apt update
+              sudo apt install -y libgdal-dev
       - run:
           command: ./manage.py test
           name: Test
