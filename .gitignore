@@ -7,3 +7,5 @@ __pycache__/
 .DS_STORE
 .Python
 .pytest_cache/
+
+*.pyc
