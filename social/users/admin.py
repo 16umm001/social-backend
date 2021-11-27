@@ -23,7 +23,8 @@ class UserAdmin(AuthUserAdmin):
             {
                 "fields": (
                     "first_name",
-                    "last_name"
+                    "last_name",
+                    "phone_number",
                 )
             },
         ),
@@ -60,7 +61,6 @@ class UserAdmin(AuthUserAdmin):
         'email',
         'first_name',
         'last_name',
-        'phone_number',
         'is_verified',
         'is_active',
         'is_staff',

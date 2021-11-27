@@ -11,7 +11,7 @@ class User(AbstractBaseUser, UUIDModel, PermissionsMixin):
     last_name = models.CharField(max_length=128)
     email = models.EmailField(max_length=256, unique=True, db_index=True)
     phone_number = models.CharField(max_length=15, blank=True)
-    username = models.CharField(max_length=128)
+    username = models.CharField(max_length=128, db_index=True, unique=True)
     is_active = models.BooleanField("active", default=False)
     is_staff = models.BooleanField("staff status", default=False)
     is_verified = models.BooleanField(default=False, db_index=True)

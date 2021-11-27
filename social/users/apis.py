@@ -15,6 +15,7 @@ class UserAuthViewSet(viewsets.GenericViewSet):
     def register(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        username = serializer.validated_data.get('username')
         user=serializer.save(is_verified=True)
         response_serializer = self.retrieve_auth_serializer(user, context=self.get_serializer_context())
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
