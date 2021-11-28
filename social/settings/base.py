@@ -24,9 +24,9 @@ AUTH_USER_MODEL = "users.User"
 SECRET_KEY = "django-insecure-#%28*n6gxni5e^dfiknie9o@v2ftyrz&+)l+@@d8b2*5_buwta"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://social-adarsh.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -100,6 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
 
 # Rest Framework
 REST_FRAMEWORK = {
