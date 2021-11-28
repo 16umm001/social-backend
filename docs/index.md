@@ -1,8 +1,9 @@
 ```properties
 Author: Adarsh Pathak
 Github: 16umm001
-Email: adarshp199877@gmail.com
 ```
+
+[TOC]
 
 # Authentication
 
