@@ -1,4 +1,5 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
+from django.core.exceptions import BadRequest
 from knox.models import AuthToken
 
 
@@ -15,3 +16,10 @@ def create_user_account(email, password, username, first_name="", last_name="", 
 def is_username_exists(username):
     is_user_exists = get_user_model().objects.filter(username=username).exists()
     return is_user_exists
+
+
+def authenticate_user(email, password):
+    user = authenticate(username=email, password=password)
+    if user is None:
+        raise BadRequest("Wrong argument.")
+    return user

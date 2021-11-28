@@ -44,3 +44,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserAuthSerializer(AuthTokenMixin, UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         fields = UserCreateSerializer.Meta.fields + ['auth_token']
+
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    class Meta:
+        fields = ['email', 'password']
