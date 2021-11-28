@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.contrib.auth import password_validation
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -14,6 +15,8 @@ class AuthTokenMixin(serializers.Serializer):
         token = get_user_auth_token(obj)
         return token
 
+class EmptySerializer(serializers.Serializer):
+    pass
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,8 +50,31 @@ class UserAuthSerializer(AuthTokenMixin, UserCreateSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    password = serializers.CharField()
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(required=True)
 
     class Meta:
         fields = ['email', 'password']
+
+    def validate(self, attrs):
+        email = attrs.get("email")
+        password = attrs.get("password")
+        user = User.objects.filter(email=email).first()
+        if not user:
+            raise ValidationError("Email does not exists.")
+        if user and not user.check_password(password):
+            raise ValidationError("Incorrect password")
+        return super(UserLoginSerializer, self).validate(attrs)
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+    current_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_current_password(self, value):
+        if not self.context['request'].user.check_password(value):
+            raise ValidationError("Current password does not match")
+
+    def validate_new_password(self, value):
+        password_validation.validate_password(value)
+        return value
