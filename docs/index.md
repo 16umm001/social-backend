@@ -3,8 +3,7 @@ Author: Adarsh Pathak
 Github: 16umm001
 ```
 
-{:toc}
-
+[TOC]
 # Authentication
 
 ## Register
