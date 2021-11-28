@@ -1,0 +1,36 @@
+language: python
+sudo: false
+python:
+- '3.6.4'
+
+addons:
+  postgresql: "9.5"
+  apt:
+    packages:
+      - postgresql-9.5-postgis-2.3
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+before_cache:
+  - re -f $HOME/.cache/pip/log/debug.log
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - export DATABASE_URL=postgres://postgres@localhost/social
+  - psql -c "CREATE DATABASE social;" -U postgres
+
+script:
+  - flake8
+  - pytest --cov -v --tb=native
+
+deploy:
+  provider: heroku
+  buildpack: python
+  strategy: api
+  api_key:
+    secure: 37bbe498-9667-4fd8-a823-1c28f0f563a0
+
