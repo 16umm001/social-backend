@@ -83,11 +83,11 @@ WSGI_APPLICATION = "social.wsgi.application"
 DATABASES = {
    "default": {
        "ENGINE": "django.contrib.gis.db.backends.postgis",
-       "NAME": "social",
-       "USER": "postgres",
-       "PASSWORD": "adarsh1998",
-       "HOST": "localhost",
-       "PORT": '5432',
+       "NAME": env("DATABASE_NAME", default="My_Database"),
+       "USER": env("DATABASE_USER", "user"),
+       "PASSWORD": env("DATABASE_PASSWORD", default=""),
+       "HOST": env("DATABASE_HOST", default="localhost"),
+       "PORT": env("DATABASE_PORT", default=5432),
    }
 }
 

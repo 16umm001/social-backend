@@ -32,5 +32,5 @@ deploy:
   buildpack: python
   strategy: api
   api_key:
-    secure: 37bbe498-9667-4fd8-a823-1c28f0f563a0
+    secure: <heroku_api_key>
 
