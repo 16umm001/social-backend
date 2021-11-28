@@ -3,6 +3,7 @@ attrs==21.2.0
 cffi==1.15.0
 cryptography==36.0.0
 Django==3.2.9
+django-environ==0.8.1
 django-rest-knox==4.1.0
 djangorestframework==3.12.4
 flake8==4.0.1

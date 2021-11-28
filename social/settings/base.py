@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +24,10 @@ AUTH_USER_MODEL = "users.User"
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-#%28*n6gxni5e^dfiknie9o@v2ftyrz&+)l+@@d8b2*5_buwta"
+SECRET_KEY = env("SECRET_KEY", default="secret_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = ['https://social-adarsh.herokuapp.com', 'localhost']
 
@@ -80,11 +83,11 @@ WSGI_APPLICATION = "social.wsgi.application"
 DATABASES = {
    "default": {
        "ENGINE": "django.contrib.gis.db.backends.postgis",
-       "NAME": "social",
-       "USER": "postgres",
-       "PASSWORD": "adarsh1998",
-       "HOST": "localhost",
-       "PORT": '5432',
+       "NAME": env("DATABASE_NAME", default="social"),
+       "USER": env("DATABASE_USER", default="postgres"),
+       "PASSWORD": env("DATABASE_PASSWORD", default=""),
+       "HOST": env("DATABASE_HOST", default="localhost"),
+       "PORT": env("DATABASE_PORT", default=5432),
    }
 }
 
