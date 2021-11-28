@@ -104,8 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-GDAL_LIBRARY_PATH = env('GDAL_LIBRARY_PATH', default="/")
-GEOS_LIBRARY_PATH = env('GEOS_LIBRARY_PATH', default="/")
+GDAL_LIBRARY_PATH = env('GDAL_LIBRARY_PATH', default="")
+GEOS_LIBRARY_PATH = env('GEOS_LIBRARY_PATH', default="")
 
 
 # Rest Framework
