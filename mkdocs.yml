@@ -1,0 +1,15 @@
+site_name: social
+site_description: social-backend
+site_author: 16umm001
+repo_url: https://github.com/16umm001/social-backend
+
+nav:
+  - Home: 'index.md'
+
+theme: 'mkdocs'
+
+copyright: ''
+
+site_dir: _docs_html
+
+strict: true

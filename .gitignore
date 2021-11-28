@@ -7,3 +7,14 @@ __pycache__/
 .DS_STORE
 .Python
 .pytest_cache/
+
+*.pyc
+
+docs/_build/
+
+_docs_html/
+media/
+
+venv/
+
+keys
